@@ -7,7 +7,8 @@ from get_queue_url import *
 date_time = ("The time and date is: " + str(datetime.now()))
 
 #send sqs message with the current date & time
-message = client.send_message(
-    QueueUrl=url,
-    MessageBody=date_time,
-)
+def send_sqs_message():
+    message = client.send_message(
+        QueueUrl=url,
+        MessageBody=date_time,
+    )

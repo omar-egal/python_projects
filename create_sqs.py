@@ -1,5 +1,6 @@
 import boto3
 import json
+import time
 
 #Create a standard SQS queue for week 15 project
 caller_id = boto3.client('sts')
@@ -18,4 +19,11 @@ url = client.get_queue_url(
     QueueOwnerAWSAccountId=acc_id
 )
 url = url['QueueUrl']
-print(url)
+timestamp = time.time()
+
+#send sqs message
+message = client.send_message(
+    QueueUrl=url,
+    MessageBody=str(timestamp),
+)
+#print(json.dumps(message, indent=2, default=str))

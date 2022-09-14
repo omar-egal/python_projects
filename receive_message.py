@@ -1,10 +1,10 @@
 import boto3
 import json
-from get_queue_url import *
+from create_sqs_queue import *
 
 sqs = boto3.client('sqs')
 response = sqs.receive_message(
-    QueueUrl=url,
+    QueueUrl=get_account_id(),
 )
 
 messages = response['Messages']
